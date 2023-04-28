@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.2.96",
+    "@prisma/client": "4.13.0",
     "next-auth": "4.21.1",
     "vuetify": "^3.2.1"
   }

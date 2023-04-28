@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { VBtn, VIcon } from "vuetify/components";
+
 const BottomNavItem = defineComponent({
   props: {
     to: {
@@ -28,9 +29,9 @@ const BottomNavItem = defineComponent({
 
 <template>
   <v-bottom-navigation mode="shift">
-    <BottomNavItem to="/" title="Página Inicial" icon="mdi-home" />
+    <BottomNavItem to="/" title="Início" icon="mdi-home" />
 
-    <BottomNavItem to="/timeline" title="Linha do Tempo" icon="mdi-timeline" />
+    <BottomNavItem to="/timeline" title="Timeline" icon="mdi-timeline" />
 
     <BottomNavItem to="/projects" title="Projetos" icon="mdi-account-group" />
 
