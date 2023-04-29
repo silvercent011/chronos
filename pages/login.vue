@@ -4,12 +4,14 @@ const { signIn } = useAuth();
 function signInWithGitHub() {
   signIn("github");
 }
+
+definePageMeta({
+  layout: false,
+});
 </script>
 
 <template>
-  <IonPage>
-    <IonContent>
-      <IonButton @click="signInWithGitHub"> Entrar com GitHub </IonButton>
-    </IonContent>
-  </IonPage>
+  <v-container>
+    <v-btn @click="signInWithGitHub"> Entrar com GitHub </v-btn>
+  </v-container>
 </template>

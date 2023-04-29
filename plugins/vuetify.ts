@@ -1,6 +1,6 @@
 import "@mdi/font/css/materialdesignicons.css";
 import { createVuetify } from "vuetify";
-import { md3 } from "vuetify/blueprints";
+import { md2 } from "vuetify/blueprints";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import "vuetify/styles";
@@ -10,8 +10,8 @@ export default defineNuxtPlugin((nuxtApp) => {
   const vuetify = createVuetify({
     components,
     directives,
-    ssr: true,
-    blueprint: md3,
+    ssr: false,
+    blueprint: md2,
     icons: {
       defaultSet: "mdi",
       aliases,
