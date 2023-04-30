@@ -17,14 +17,13 @@ export const useRegisterStore = defineStore("register", () => {
     const headers = useRequestHeaders(["cookie"]) as HeadersInit;
 
     const convertedMinutes = converterHorasParaMinutos(payload.minutes);
-
     const finalPayload = {
       title: payload.title,
       minutes: convertedMinutes,
       jiraUrl: payload.jiraUrl,
       githubUrl: payload.githubUrl,
       registerType: "DEFAULT",
-      projectId: payload.project.id,
+      projectId: payload.projectId,
     };
 
     const { data: _register } = await useLazyFetch<any>("/api/registers", {

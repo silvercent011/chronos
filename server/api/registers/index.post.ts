@@ -9,11 +9,6 @@ export default defineEventHandler(async (event) => {
     const { title, minutes, jiraUrl, githubUrl, registerType, projectId } =
       body;
 
-    const user = await prisma.user.findUnique({
-      where: {
-        email: session!.user!.email as string,
-      },
-    });
     const register = await prisma.register.create({
       data: {
         title,

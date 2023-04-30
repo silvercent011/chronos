@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Project } from "@prisma/client";
 import { useProjectStore } from "~/stores/project";
 import { useRegisterStore } from "~/stores/register";
 
@@ -17,7 +16,7 @@ const payload = ref({
   jiraUrl: "",
   githubUrl: "",
   registerType: "",
-  project: { name: "", id: "" } as Project,
+  projectId: "",
 });
 
 async function createRegister() {
@@ -47,9 +46,9 @@ function validarTempo(value: string) {
   return true;
 }
 
-onMounted(() => {
-  payload.value.project = projectStore.projects[0];
-});
+// onMounted(() => {
+//   payload.value.projectId = projectStore.projects[0].id;
+// });
 </script>
 
 <template>
@@ -71,7 +70,7 @@ onMounted(() => {
           <v-container>
             <v-row>
               <v-select
-                v-model="payload.project"
+                v-model="payload.projectId"
                 :items="projectStore.projects"
                 item-title="name"
                 item-value="id"
