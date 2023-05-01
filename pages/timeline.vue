@@ -5,7 +5,7 @@ import { useProjectStore } from "~/stores/project";
 
 const projectStore = useProjectStore();
 
-const date = ref(new Date().toISOString().split("T")[0]);
+const date = ref<Date>(new Date());
 
 const selectedProject = ref();
 
