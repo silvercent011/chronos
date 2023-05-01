@@ -9,4 +9,7 @@ export default defineNuxtConfig({
   pinia: {
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
   },
+  auth: {
+    baseURL: process.env.PUBLIC_URL,
+  },
 });
