@@ -2,17 +2,19 @@
 import { useProjectStore } from "~/stores/project";
 
 const projectStore = useProjectStore();
+
+projectStore.fetchProjects();
 </script>
 
 <template>
-  <v-container>
+  <div class="flex flex-col gap-4">
     <UserCard />
 
-    <div>
+    <div class="flex flex-col gap-4">
       <ProjectHomeCard
         v-for="project in projectStore.projects"
         :project="project"
       />
     </div>
-  </v-container>
+  </div>
 </template>

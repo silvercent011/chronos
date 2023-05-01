@@ -1,14 +1,13 @@
 <template>
-  <v-layout>
-    <!-- <v-app-bar elevation="2" density="prominent">
-      <v-app-bar-title>
-        <v-container class="font-weight-bold text-h4"> CHronos </v-container>
-      </v-app-bar-title>
-    </v-app-bar> -->
-    <v-main>
+  <div class="flex flex-col relative min-h-screen">
+    <div class="flex bg-primary-600 py-5 px-10">
+      <h1 class="text-2xl font-bold">Chronos</h1>
+    </div>
+    <div class="p-5 relative flex-1 mb-16">
       <slot />
       <RegisterModalCreate />
-    </v-main>
+    </div>
+
     <BottomNav />
-  </v-layout>
+  </div>
 </template>

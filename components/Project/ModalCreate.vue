@@ -15,32 +15,18 @@ async function createProject() {
 </script>
 
 <template>
-  <v-dialog v-model="dialog" persistent width="1024">
-    <template v-slot:activator="{ props }">
-      <v-btn color="primary" v-bind="props">Criar Projeto</v-btn>
-    </template>
-    <v-card>
-      <v-container>
-        <v-card-title>
-          <span class="text-h5">Criar Projeto</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-text-field
-                v-model="title"
-                label="Título do projeto*"
-                required
-              ></v-text-field>
-            </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn variant="text" @click="dialog = false"> Cancelar </v-btn>
-          <v-btn variant="text" @click="createProject"> Criar </v-btn>
-        </v-card-actions>
-      </v-container>
-    </v-card>
-  </v-dialog>
+  <Button class="my-2" @click="dialog = true">Criar Projeto</Button>
+  <ModalBase :isOpen="dialog" @close="dialog = !dialog">
+    <h1 class="text-2xl">Criar Projeto</h1>
+    <FormGroup>
+      <Label>Nome do projeto:</Label>
+      <Input v-model="title" type="text" />
+    </FormGroup>
+    <div class="flex gap-2">
+      <Button class="flex-1" variant="fail" @click="dialog = false"
+        >Cancelar</Button
+      >
+      <Button class="flex-1" @click="createProject">Criar</Button>
+    </div>
+  </ModalBase>
 </template>

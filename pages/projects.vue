@@ -9,14 +9,12 @@ if (projectStore.projects.length === 0) {
 </script>
 
 <template>
-  <v-container>
-    <ProjectModalCreate />
-    <div class="d-flex flex-column">
-      <ProjectCard
-        v-for="project in projectStore.projects"
-        :key="project.id"
-        :project="project"
-      />
-    </div>
-  </v-container>
+  <ProjectModalCreate />
+  <div class="flex flex-col gap-2">
+    <ProjectCard
+      v-for="project in projectStore.projects"
+      :key="project.id"
+      :project="project"
+    />
+  </div>
 </template>

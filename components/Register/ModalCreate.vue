@@ -52,6 +52,12 @@ function validarTempo(value: string) {
 </script>
 
 <template>
+  <Button @click="dialog = true" class="absolute bottom-2 right-2">
+    <Icon name="mdi:plus" />
+    Novo registro</Button
+  >
+  <ModalBase :isOpen="dialog" @close="dialog = false"> </ModalBase>
+  <!--    
   <v-dialog v-model="dialog" persistent width="1024">
     <template v-slot:activator="{ props }">
       <v-btn
@@ -113,5 +119,5 @@ function validarTempo(value: string) {
         </v-card-actions>
       </v-container>
     </v-card>
-  </v-dialog>
+  </v-dialog> -->
 </template>

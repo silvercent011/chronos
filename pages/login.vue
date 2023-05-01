@@ -11,7 +11,7 @@ definePageMeta({
 </script>
 
 <template>
-  <v-container>
-    <v-btn @click="signInWithGitHub"> Entrar com GitHub </v-btn>
-  </v-container>
+  <q-container>
+    <q-btn @click="signInWithGitHub"> Entrar com GitHub </q-btn>
+  </q-container>
 </template>

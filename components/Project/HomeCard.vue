@@ -28,14 +28,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <v-card class="ma-2">
-    <v-card-title>
-      <span class="text-h5">{{ project.name }}</span>
-    </v-card-title>
-
-    <v-card-text>
-      <p>Horas: {{ `${totalHoursOnMonth}h${uncompleteHoursMinutes}min` }}</p>
-      <p>Minutos: {{ totalMinutesOnMonth }}</p>
-    </v-card-text>
-  </v-card>
+  <div class="bg-neutral-700 rounded-lg p-5">
+    <h1 class="text-2xl">{{ project.name }}</h1>
+    <p>Horas: {{ `${totalHoursOnMonth}h${uncompleteHoursMinutes}min` }}</p>
+    <p>Minutos: {{ totalMinutesOnMonth }}</p>
+  </div>
 </template>
