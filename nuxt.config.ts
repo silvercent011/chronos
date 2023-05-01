@@ -10,6 +10,6 @@ export default defineNuxtConfig({
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
   },
   auth: {
-    baseURL: process.env.PUBLIC_URL,
+    origin: process.env.PUBLIC_URL,
   },
 });
