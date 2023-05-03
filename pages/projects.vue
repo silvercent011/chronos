@@ -5,7 +5,7 @@ const projectStore = useProjectStore();
 </script>
 
 <template>
-  <v-toolbar color="primary">
+  <v-toolbar color="primary" floating>
     <v-toolbar-title>Projetos</v-toolbar-title>
   </v-toolbar>
   <v-container>

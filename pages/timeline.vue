@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { Register } from "@prisma/client";
+import { formatISO } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
 import { useProjectStore } from "~/stores/project";
 
 const projectStore = useProjectStore();
 
-const date = ref<string>(new Date().toISOString().split("T")[0]);
+const date = ref<string>(
+  formatISO(new Date(), {
+    representation: "complete",
+    format: "extended",
+  }).split("T")[0]
+);
 
 const parsedDate = ref<Date>();
 
@@ -43,7 +49,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <v-toolbar color="primary" extended>
+  <v-app-bar color="primary" extended sticky>
     <v-toolbar-title>Linha do Tempo</v-toolbar-title>
 
     <template #extension>
@@ -62,7 +68,7 @@ watchEffect(async () => {
           type="date"
         ></v-text-field></div
     ></template>
-  </v-toolbar>
+  </v-app-bar>
   <v-container>
     <v-timeline class="w-100" side="end">
       <RegisterTimelineItem
