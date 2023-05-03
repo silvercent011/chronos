@@ -2,13 +2,12 @@
 import { useProjectStore } from "~/stores/project";
 
 const projectStore = useProjectStore();
-
-if (projectStore.projects.length === 0) {
-  projectStore.fetchProjects();
-}
 </script>
 
 <template>
+  <v-toolbar color="primary">
+    <v-toolbar-title>Projetos</v-toolbar-title>
+  </v-toolbar>
   <v-container>
     <ProjectModalCreate />
     <div class="d-flex flex-column">

@@ -1,17 +1,10 @@
 import { User } from "@prisma/client";
+import useSWRV from "swrv";
 
 export const useUserStore = defineStore("user", () => {
-  const user = ref<User>();
+  const { data: user } = useSWRV<User>("/api/user/me", $fetch, {
+    refreshInterval: 15000,
+  });
 
-  async function fetchUserData() {
-    const headers = useRequestHeaders(["cookie"]) as HeadersInit;
-
-    const { data: _user } = await useFetch<User>("/api/user/me", { headers });
-
-    if (_user.value) {
-      user.value = _user.value;
-    }
-  }
-
-  return { user, fetchUserData };
+  return { user };
 });

@@ -1,19 +1,26 @@
 import { Project, Register } from "@prisma/client";
+import useSWRV from "swrv";
 
 export const useProjectStore = defineStore("project", () => {
-  const projects = ref<Project[]>([]);
+  // const projects = ref<Project[]>([]);
 
-  async function fetchProjects() {
-    const headers = useRequestHeaders(["cookie"]) as HeadersInit;
+  const {
+    data: projects,
+    error,
+    mutate: mutateProjects,
+  } = useSWRV<Project[]>("/api/projects", $fetch, { refreshInterval: 15000 });
 
-    const { data: _projects } = await useFetch<Project[]>("/api/projects", {
-      headers,
-    });
+  // async function fetchProjects() {
+  //   const headers = useRequestHeaders(["cookie"]) as HeadersInit;
 
-    if (_projects.value) {
-      projects.value = _projects.value;
-    }
-  }
+  //   const { data: _projects } = await useFetch<Project[]>("/api/projects", {
+  //     headers,
+  //   });
+
+  //   if (_projects.value) {
+  //     projects.value = _projects.value;
+  //   }
+  // }
 
   async function createProject({ title }: { title: string }) {
     const headers = useRequestHeaders(["cookie"]) as HeadersInit;
@@ -23,18 +30,12 @@ export const useProjectStore = defineStore("project", () => {
       headers,
       body: { name: title },
     });
-
-    if (_project.value) {
-      fetchProjects();
-    }
   }
 
   async function getTodayRegisters(id: string, dt: Date = new Date()) {
     const headers = useRequestHeaders(["cookie"]) as HeadersInit;
 
     const date = new Date(dt);
-
-    console.log(id);
 
     const { data: _registers } = await useFetch<Register[]>(
       `/api/projects/${id}/registers`,
@@ -72,7 +73,6 @@ export const useProjectStore = defineStore("project", () => {
 
   return {
     projects,
-    fetchProjects,
     createProject,
     getMonthRegisters,
     getTodayRegisters,

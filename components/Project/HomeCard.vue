@@ -14,6 +14,7 @@ const values = ref<Register[]>([]);
 
 async function fetchValues() {
   const response = await projectStore.getMonthRegisters(props.project.id);
+
   if (response.value) {
     values.value = response.value;
   }
@@ -28,7 +29,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <v-card class="ma-2">
+  <v-card class="w-100">
     <v-card-title>
       <span class="text-h5">{{ project.name }}</span>
     </v-card-title>

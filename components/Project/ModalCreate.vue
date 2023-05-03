@@ -9,7 +9,9 @@ const title = ref("");
 
 async function createProject() {
   await projectStore.createProject({ title: title.value });
+
   dialog.value = false;
+
   title.value = "";
 }
 </script>
