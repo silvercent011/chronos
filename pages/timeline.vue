@@ -35,16 +35,16 @@ watchEffect(async () => {
   }
 });
 
-watch(date, (value) => {
-  parsedDate.value = utcToZonedTime(new Date(value), "Etc/GMT");
-  console.log(parsedDate.value);
-});
-
 watchEffect(async () => {
   console.log("date.value", date.value);
   if (projectStore.projects) {
     selectedProject.value = projectStore.projects[0].id;
   }
+});
+
+watch(date, (value) => {
+  parsedDate.value = utcToZonedTime(new Date(value), "Etc/GMT");
+  console.log(parsedDate.value);
 });
 </script>
 
