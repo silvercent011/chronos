@@ -64,23 +64,17 @@ watchEffect(async () => {
     ></template>
   </v-toolbar>
   <v-container>
-    <div class="timeline">
+    <v-timeline class="w-100" side="end">
       <RegisterTimelineItem
         v-for="item in todayRegisters"
         :key="item.id"
         :item="item"
       />
-    </div>
+    </v-timeline>
   </v-container>
 </template>
 
 <style scoped>
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 .inputs {
   display: flex;
   align-items: baseline;

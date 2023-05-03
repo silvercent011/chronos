@@ -7,9 +7,11 @@ export default eventHandler(async (event) => {
 
   if (
     !session &&
-    !event.path?.startsWith("/api/auth") &&
+    !event.path?.startsWith("/api") &&
     !openRoutes.includes(event.path as string)
   ) {
-    throw createError({ statusMessage: "Unauthenticated", statusCode: 403 });
+    if (event.path!.startsWith("/api")) {
+      throw createError({ statusMessage: "Unauthenticated", statusCode: 403 });
+    }
   }
 });
