@@ -20,11 +20,21 @@ const payload = ref({
 async function createRegister() {
   registerStore.createRegister(payload.value);
   dialog.value = false;
+  payload.value = {
+    title: "",
+    minutes: "",
+    jiraUrl: "",
+    githubUrl: "",
+    registerType: "",
+    projectId: "",
+  };
 }
 
-// onMounted(() => {
-//   payload.value.projectId = projectStore.projects[0].id;
-// });
+onMounted(() => {
+  if (projectStore.projects && projectStore.projects.length !== 0) {
+    payload.value.projectId = projectStore.projects[0].id;
+  }
+});
 </script>
 
 <template>

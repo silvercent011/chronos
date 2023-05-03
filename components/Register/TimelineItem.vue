@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { Register } from "@prisma/client";
 
-const props = defineProps<{
+interface TimelineItemProps {
   item: Register;
-}>();
+}
+
+const props = defineProps<TimelineItemProps>();
 
 const { totalHours, uncompleteHoursMinutes } = useTimeConverter({
   value: props.item.minutes,

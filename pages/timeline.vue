@@ -34,29 +34,36 @@ watch(date, (value) => {
   console.log(parsedDate.value);
 });
 
-onMounted(async () => {
+watchEffect(async () => {
   console.log("date.value", date.value);
-
-  selectedProject.value = projectStore.projects![0].id;
+  if (projectStore.projects) {
+    selectedProject.value = projectStore.projects[0].id;
+  }
 });
 </script>
 
 <template>
+  <v-toolbar color="primary" extended>
+    <v-toolbar-title>Linha do Tempo</v-toolbar-title>
+
+    <template #extension>
+      <div class="inputs w-100 pa-5">
+        <v-select
+          class="flex-grow-1"
+          v-model="selectedProject"
+          :items="projectStore.projects"
+          item-title="name"
+          item-value="id"
+          label="Projeto"
+        ></v-select>
+        <v-text-field
+          v-model="date"
+          label="Data"
+          type="date"
+        ></v-text-field></div
+    ></template>
+  </v-toolbar>
   <v-container>
-    <div class="inputs">
-      <v-select
-        v-model="selectedProject"
-        :items="projectStore.projects"
-        item-title="name"
-        item-value="id"
-        label="Projeto"
-      ></v-select>
-      <v-text-field
-        v-model="date"
-        label="Start date"
-        type="date"
-      ></v-text-field>
-    </div>
     <div class="timeline">
       <RegisterTimelineItem
         v-for="item in todayRegisters"
