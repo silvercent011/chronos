@@ -27,8 +27,12 @@
     "@mdi/font": "^7.2.96",
     "@pinia/nuxt": "^0.4.9",
     "@prisma/client": "4.13.0",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
+    "dayjs": "^1.11.7",
     "next-auth": "4.21.1",
     "pinia": "^2.0.35",
+    "swrv": "^1.0.3",
     "vuetify": "^3.2.1"
   }
 }

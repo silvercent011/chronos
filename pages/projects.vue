@@ -2,10 +2,6 @@
 import { useProjectStore } from "~/stores/project";
 
 const projectStore = useProjectStore();
-
-if (projectStore.projects.length === 0) {
-  projectStore.fetchProjects();
-}
 </script>
 
 <template>

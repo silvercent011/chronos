@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { Register } from "@prisma/client";
-
+import { utcToZonedTime } from "date-fns-tz";
 import { useProjectStore } from "~/stores/project";
 
 const projectStore = useProjectStore();
 
-const date = ref<Date>(new Date());
+const date = ref<string>(new Date().toISOString().split("T")[0]);
+
+const parsedDate = ref<Date>();
 
 const selectedProject = ref();
 
@@ -14,7 +16,7 @@ const todayRegisters = ref<Register[]>();
 async function fetchRegisters() {
   const response = await projectStore.getTodayRegisters(
     selectedProject.value,
-    date.value
+    parsedDate.value
   );
   if (response.value) {
     todayRegisters.value = response.value;
@@ -27,12 +29,15 @@ watchEffect(async () => {
   }
 });
 
+watch(date, (value) => {
+  parsedDate.value = utcToZonedTime(new Date(value), "Etc/GMT");
+  console.log(parsedDate.value);
+});
+
 onMounted(async () => {
-  console.log("selectedProject.value", selectedProject.value);
   console.log("date.value", date.value);
 
-  await projectStore.fetchProjects();
-  selectedProject.value = projectStore.projects[0].id;
+  selectedProject.value = projectStore.projects![0].id;
 });
 </script>
 

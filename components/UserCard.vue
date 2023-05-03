@@ -2,8 +2,6 @@
 import { useUserStore } from "~/stores/user";
 
 const userStore = useUserStore();
-
-userStore.fetchUserData();
 </script>
 
 <template>

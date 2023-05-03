@@ -23,7 +23,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const vuetify = createVuetify({
     components,
     directives,
-    ssr: false,
+    ssr: true,
     blueprint: md2,
     icons: {
       defaultSet: "mdi",
