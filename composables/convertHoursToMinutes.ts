@@ -7,6 +7,7 @@ export function convertHoursToMinutes(horasString: string) {
   }
 
   const horas = matches[1] ? parseInt(matches[1]) : 0;
+
   const minutos = matches[2] ? parseInt(matches[2]) : 0;
 
   return horas * 60 + minutos;

@@ -5,14 +5,20 @@ const dialog = ref(false);
 
 const projectStore = useProjectStore();
 
-const title = ref("");
+const [title, resetTitle] = useEnhancedRef<string>("");
+
+const [monthHours, resetMA] = useEnhancedRef<string>("");
 
 async function createProject() {
-  await projectStore.createProject({ title: title.value });
+  await projectStore.createProject({
+    title: title.value,
+    monthHours: monthHours.value,
+  });
 
   dialog.value = false;
 
-  title.value = "";
+  resetTitle();
+  resetMA();
 }
 </script>
 
@@ -35,12 +41,20 @@ async function createProject() {
                 required
               ></v-text-field>
             </v-row>
+            <v-row>
+              <v-text-field
+                v-model="monthHours"
+                label="Horas/Mês*"
+                type="number"
+                required
+              ></v-text-field>
+            </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn variant="text" @click="dialog = false"> Cancelar </v-btn>
-          <v-btn variant="text" @click="createProject"> Criar </v-btn>
+          <v-btn variant="outlined" @click="dialog = false"> Cancelar </v-btn>
+          <v-btn variant="elevated" @click="createProject"> Criar </v-btn>
         </v-card-actions>
       </v-container>
     </v-card>

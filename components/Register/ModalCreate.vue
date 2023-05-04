@@ -8,7 +8,7 @@ const projectStore = useProjectStore();
 
 const registerStore = useRegisterStore();
 
-const payload = ref({
+const [payload, resetPayload] = useEnhancedRef<any>({
   title: "",
   minutes: "",
   jiraUrl: "",
@@ -20,14 +20,7 @@ const payload = ref({
 async function createRegister() {
   registerStore.createRegister(payload.value);
   dialog.value = false;
-  payload.value = {
-    title: "",
-    minutes: "",
-    jiraUrl: "",
-    githubUrl: "",
-    registerType: "",
-    projectId: "",
-  };
+  resetPayload();
 }
 
 onMounted(() => {
@@ -41,11 +34,13 @@ onMounted(() => {
   <v-dialog v-model="dialog" persistent width="1024">
     <template v-slot:activator="{ props }">
       <v-btn
+        icon="mdi-timer-plus"
         style="position: fixed; bottom: 80px; right: 20px; z-index: 2000"
         color="primary"
         v-bind="props"
-        >Criar Registro</v-btn
-      >
+        rounded="circle"
+        size="x-large"
+      ></v-btn>
     </template>
     <v-card>
       <v-container>

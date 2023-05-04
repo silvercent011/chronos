@@ -10,25 +10,19 @@ export const useProjectStore = defineStore("project", () => {
     mutate: mutateProjects,
   } = useSWRV<Project[]>("/api/projects", $fetch, { refreshInterval: 15000 });
 
-  // async function fetchProjects() {
-  //   const headers = useRequestHeaders(["cookie"]) as HeadersInit;
-
-  //   const { data: _projects } = await useFetch<Project[]>("/api/projects", {
-  //     headers,
-  //   });
-
-  //   if (_projects.value) {
-  //     projects.value = _projects.value;
-  //   }
-  // }
-
-  async function createProject({ title }: { title: string }) {
+  async function createProject({
+    title,
+    monthHours,
+  }: {
+    title: string;
+    monthHours: string;
+  }) {
     const headers = useRequestHeaders(["cookie"]) as HeadersInit;
 
     const { data: _project } = await useLazyFetch<Project>("/api/projects", {
       method: "POST",
       headers,
-      body: { name: title },
+      body: { name: title, monthHours },
     });
   }
 

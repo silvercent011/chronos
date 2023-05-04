@@ -23,20 +23,31 @@ async function fetchValues() {
 const { totalHoursOnMonth, totalMinutesOnMonth, uncompleteHoursMinutes } =
   useMonthTime({ values });
 
+const [mesAt, anoAt] = getAtualPeriodNames();
+
 onMounted(async () => {
   await fetchValues();
 });
 </script>
 
 <template>
-  <v-card class="w-100">
-    <v-card-title>
-      <span class="text-h5">{{ project.name }}</span>
-    </v-card-title>
+  <v-card class="w-100 d-flex">
+    <div class="flex-grow-1">
+      <v-card-title>
+        <span class="text-h5">{{ project.name }}</span>
+      </v-card-title>
 
-    <v-card-text>
-      <p>Horas: {{ `${totalHoursOnMonth}h${uncompleteHoursMinutes}min` }}</p>
-      <p>Minutos: {{ totalMinutesOnMonth }}</p>
-    </v-card-text>
+      <v-card-text>
+        <p>Horas: {{ `${totalHoursOnMonth}h${uncompleteHoursMinutes}min` }}</p>
+        <p>Minutos: {{ totalMinutesOnMonth }}</p>
+      </v-card-text>
+    </div>
+    <div class="d-flex flex-grow-1 px-5 flex-column justify-center align-end">
+      <p>{{ mesAt.toString().toUpperCase() }}, {{ anoAt }}</p>
+      <p class="text-h4 font-weight-black">
+        <span> {{ totalHoursOnMonth }}</span
+        >/{{ project.monthHours }}h
+      </p>
+    </div>
   </v-card>
 </template>
