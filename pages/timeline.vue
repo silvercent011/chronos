@@ -1,19 +1,10 @@
 <script setup lang="ts">
 import { Register } from "@prisma/client";
-import { formatISO } from "date-fns";
-import { utcToZonedTime } from "date-fns-tz";
 import { useProjectStore } from "~/stores/project";
 
+const { stringDate, parsedDate } = useTransformDate();
+
 const projectStore = useProjectStore();
-
-const date = ref<string>(
-  formatISO(new Date(), {
-    representation: "complete",
-    format: "extended",
-  }).split("T")[0]
-);
-
-const parsedDate = ref<Date>();
 
 const selectedProject = ref();
 
@@ -30,18 +21,12 @@ async function fetchRegisters() {
 }
 
 watchEffect(async () => {
-  if (selectedProject.value && date.value) {
+  if (selectedProject.value && stringDate.value) {
     await fetchRegisters();
   }
 });
 
-watch(date, (value) => {
-  parsedDate.value = utcToZonedTime(new Date(value), "Etc/GMT");
-  console.log(parsedDate.value);
-});
-
 watchEffect(async () => {
-  console.log("date.value", date.value);
   if (projectStore.projects) {
     selectedProject.value = projectStore.projects[0].id;
   }
@@ -63,7 +48,7 @@ watchEffect(async () => {
           label="Projeto"
         ></v-select>
         <v-text-field
-          v-model="date"
+          v-model="stringDate"
           label="Data"
           type="date"
         ></v-text-field></div

@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event);
 
-    const { name } = body;
+    const { name, monthHours } = body;
 
     const user = await prisma.user.findUnique({
       where: {
@@ -16,6 +16,7 @@ export default defineEventHandler(async (event) => {
     const project = await prisma.project.create({
       data: {
         name,
+        monthHours: parseInt(monthHours),
         user: {
           connect: {
             id: user!.id,
