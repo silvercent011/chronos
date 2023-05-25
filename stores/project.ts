@@ -2,13 +2,11 @@ import { Project, Register } from "@prisma/client";
 import useSWRV from "swrv";
 
 export const useProjectStore = defineStore("project", () => {
-  // const projects = ref<Project[]>([]);
-
-  const {
-    data: projects,
-    error,
-    mutate: mutateProjects,
-  } = useSWRV<Project[]>("/api/projects", $fetch, { refreshInterval: 15000 });
+  const { data: projects, error } = useSWRV<Project[]>(
+    "/api/projects",
+    $fetch,
+    { refreshInterval: 5000 }
+  );
 
   async function createProject({
     title,
