@@ -13,7 +13,6 @@ export const useTransformDate = () => {
 
   watch(stringDate, (value) => {
     parsedDate.value = utcToZonedTime(new Date(value), "Etc/GMT");
-    console.log(parsedDate.value);
   });
 
   return { stringDate, parsedDate };
