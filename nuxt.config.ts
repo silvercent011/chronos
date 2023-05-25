@@ -1,7 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: true,
-  modules: ["@sidebase/nuxt-auth", "@pinia/nuxt"],
+  devtools: {
+    enabled: true,
+  },
+  modules: ["@nuxt/devtools", "@sidebase/nuxt-auth", "@pinia/nuxt"],
   build: {
     transpile: ["vuetify", "swrv"],
   },
@@ -9,6 +11,7 @@ export default defineNuxtConfig({
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
   },
   auth: {
-    origin: process.env.AUTH_ORIGIN as string,
+    // origin: process.env.AUTH_ORIGIN as string,
+    baseURL: process.env.AUTH_ORIGIN as string,
   },
 });

@@ -3,8 +3,6 @@ export default defineEventHandler(async (event) => {
 
   const { mes, ano, dia } = getQuery(event);
 
-  console.log({ mes, ano, dia });
-
   const registers = await prisma.register.findMany({
     where: {
       projectId: id,
