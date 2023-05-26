@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   },
   modules: ["@nuxt/devtools", "@sidebase/nuxt-auth", "@pinia/nuxt"],
   build: {
-    transpile: ["vuetify", "swrv"],
+    transpile: ["vuetify"],
   },
   pinia: {
     autoImports: [
