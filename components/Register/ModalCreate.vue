@@ -8,7 +8,7 @@ const projectStore = useProjectStore();
 
 const registerStore = useRegisterStore();
 
-const [payload, resetPayload] = useEnhancedRef<any>({
+const [payload, resetPayload] = useEnhancedRef({
   title: "",
   minutes: "",
   jiraUrl: "",
@@ -18,7 +18,7 @@ const [payload, resetPayload] = useEnhancedRef<any>({
 });
 
 async function createRegister() {
-  registerStore.createRegister(payload.value);
+  // registerStore.createRegister(payload.value);
   dialog.value = false;
   resetPayload();
 }

@@ -6,8 +6,6 @@ export default defineComponent({
     const theme = useTheme();
 
     const setTheme = (themeName: string) => {
-      console.log({ themeName });
-
       theme.global.name.value = themeName;
       localStorage.setItem("theme", themeName);
     };
