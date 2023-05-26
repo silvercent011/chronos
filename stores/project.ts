@@ -1,12 +1,19 @@
 import { Project, Register } from "@prisma/client";
-import useSWRV from "swrv";
+import { useQuery } from "@tanstack/vue-query";
 
 export const useProjectStore = defineStore("project", () => {
-  const { data: projects, error } = useSWRV<Project[]>(
-    "/api/projects",
-    $fetch,
-    { refreshInterval: 5000 }
-  );
+  const projectsFetcher = async () => await $fetch("/api/projects");
+
+  const {
+    data: projects,
+    error,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["projects"],
+    queryFn: projectsFetcher,
+    refetchInterval: 5000,
+  });
 
   async function createProject({
     title,
@@ -17,7 +24,11 @@ export const useProjectStore = defineStore("project", () => {
   }) {
     const headers = useRequestHeaders(["cookie"]) as HeadersInit;
 
-    const { data: _project } = await useLazyFetch<Project>("/api/projects", {
+    const {
+      data: _project,
+      error,
+      pending,
+    } = await useLazyFetch<Project>("/api/projects", {
       method: "POST",
       headers,
       body: { name: title, monthHours },
@@ -29,17 +40,18 @@ export const useProjectStore = defineStore("project", () => {
 
     const date = new Date(dt);
 
-    const { data: _registers } = await useFetch<Register[]>(
-      `/api/projects/${id}/registers`,
-      {
-        headers,
-        query: {
-          ano: date.getFullYear(),
-          mes: String(date.getMonth() + 1).padStart(2, "0"),
-          dia: String(date.getDate()).padStart(2, "0"),
-        },
-      }
-    );
+    const {
+      data: _registers,
+      error,
+      pending,
+    } = await useFetch<Register[]>(`/api/projects/${id}/registers`, {
+      headers,
+      query: {
+        ano: date.getFullYear(),
+        mes: String(date.getMonth() + 1).padStart(2, "0"),
+        dia: String(date.getDate()).padStart(2, "0"),
+      },
+    });
 
     return _registers;
   }
@@ -49,16 +61,17 @@ export const useProjectStore = defineStore("project", () => {
 
     const date = new Date();
 
-    const { data: _registers } = await useFetch<Register[]>(
-      `/api/projects/${id}/registers`,
-      {
-        headers,
-        query: {
-          ano: date.getFullYear(),
-          mes: String(date.getMonth() + 1).padStart(2, "0"),
-        },
-      }
-    );
+    const {
+      data: _registers,
+      error,
+      pending,
+    } = await useFetch<Register[]>(`/api/projects/${id}/registers`, {
+      headers,
+      query: {
+        ano: date.getFullYear(),
+        mes: String(date.getMonth() + 1).padStart(2, "0"),
+      },
+    });
 
     return _registers;
   }
