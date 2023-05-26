@@ -3,6 +3,7 @@ export const useRegisterStore = defineStore("register", () => {
     const headers = useRequestHeaders(["cookie"]) as HeadersInit;
 
     const convertedMinutes = convertHoursToMinutes(payload.minutes);
+
     const finalPayload = {
       title: payload.title,
       minutes: convertedMinutes,
