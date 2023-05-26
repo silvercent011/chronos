@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { storeToRefs } from "pinia";
 import { useUserStore } from "~/stores/user";
 
 const { signOut } = useAuth();
 
 const userStore = useUserStore();
 
-const { user, error } = storeToRefs(userStore);
+const { user, isError, isLoading } = storeToRefs(userStore);
 </script>
 
 <template>
@@ -16,9 +15,11 @@ const { user, error } = storeToRefs(userStore);
       <ThemeButton />
     </template>
   </v-app-bar>
-  <v-container class="d-flex flex-column">
-    {{}}
-    <!-- <UserAccountCard v-if="!error && !isValidating && user" :user="user" /> -->
+  <v-container class="d-flex flex-column pa-5">
+    <v-skeleton-loader class="border" v-if="isLoading && !isError && !user">
+    </v-skeleton-loader>
+    <UserAccountCard v-else-if="!isError && !isLoading && user" :user="user" />
+
     <v-btn variant="elevated" class="my-3" color="red" @click="signOut"
       >Sair</v-btn
     >

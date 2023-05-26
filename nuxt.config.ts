@@ -8,7 +8,11 @@ export default defineNuxtConfig({
     transpile: ["vuetify", "swrv"],
   },
   pinia: {
-    autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
+    autoImports: [
+      "defineStore",
+      ["defineStore", "definePiniaStore"],
+      "storeToRefs",
+    ],
   },
   auth: {
     // origin: process.env.AUTH_ORIGIN as string,
