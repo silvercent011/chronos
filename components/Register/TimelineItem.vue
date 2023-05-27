@@ -21,11 +21,11 @@ const { totalHours, uncompleteHoursMinutes } = useTimeConverter({
       <template #subtitle>
         <p>Tempo: {{ `${totalHours}h${uncompleteHoursMinutes}min` }}</p>
       </template>
-      <v-card-actions>
-        <!-- <v-checkbox label="Lançado no Jira?" /> -->
+      <!-- <v-card-actions>
+        <v-checkbox label="Lançado no Jira?" />
         <v-btn variant="flat"> Jira </v-btn>
         <v-btn variant="flat"> GitHub </v-btn>
-      </v-card-actions>
+      </v-card-actions> -->
     </v-card>
   </v-timeline-item>
 </template>

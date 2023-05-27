@@ -18,7 +18,7 @@ const [payload, resetPayload] = useEnhancedRef({
 });
 
 async function createRegister() {
-  // registerStore.createRegister(payload.value);
+  registerStore.createRegister(payload.value);
   dialog.value = false;
   resetPayload();
 }
