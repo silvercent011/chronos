@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v1.2.0
+
+[compare changes](https://github.com/silvercent011/minhas-horas/compare/v1.1.0...v1.2.0)
+
+
+### 🚀 Enhancements
+
+  - **#12:** Corrige reset de informações, resolves #12 ([#12](https://github.com/silvercent011/minhas-horas/issues/12))
+
+### 🩹 Fixes
+
+  - **#12:** Fix theme persistence ([00e3f46](https://github.com/silvercent011/minhas-horas/commit/00e3f46))
+
+### ❤️  Contributors
+
+- Sidney Alex
+
 ## v1.1.0
 
 

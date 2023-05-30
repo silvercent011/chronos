@@ -1,6 +1,4 @@
 export function createDate(year: string, month: string, day?: string) {
-  console.log({ year, month, day });
-
   const gte = add3Hours(
     new Date(day ? `${year}-${month}-${day}` : `${year}-${month}-01`)
   );

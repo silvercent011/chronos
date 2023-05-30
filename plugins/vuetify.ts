@@ -33,6 +33,8 @@ const CustomLightTheme: ThemeDefinition = {
 };
 
 export default defineNuxtPlugin((nuxtApp) => {
+  const { theme } = useCookieTheme();
+
   const vuetify = createVuetify({
     components: {
       VSkeletonLoader,
@@ -49,7 +51,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       },
     },
     theme: {
-      defaultTheme: "CustomLightTheme",
+      defaultTheme: theme.value,
       themes: {
         CustomLightTheme,
         CustomDarkTheme,

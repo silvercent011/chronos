@@ -5,29 +5,17 @@ export default defineComponent({
   setup() {
     const theme = useTheme();
 
-    const setTheme = (themeName: string) => {
-      console.log({ themeName });
+    const { setTheme } = useCookieTheme();
 
-      theme.global.name.value = themeName;
-      localStorage.setItem("theme", themeName);
-    };
-
-    const strg = localStorage.getItem("theme");
-
-    if (strg && strg === "CustomLightTheme") {
-      setTheme("CustomLightTheme");
-    } else {
-      setTheme("CustomDarkTheme");
-    }
-
-    watch(theme.global.name, (name) => {
-      setTheme(name);
-    });
-
-    const toggleTheme = () =>
-      (theme.global.name.value = theme.global.current.value.dark
+    const toggleTheme = () => {
+      const actTheme = theme.global.current.value.dark
         ? "CustomLightTheme"
-        : "CustomDarkTheme");
+        : "CustomDarkTheme";
+
+      theme.global.name.value = actTheme;
+
+      setTheme(actTheme);
+    };
 
     return () =>
       h(VBtn, {

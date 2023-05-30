@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation>
+  <v-bottom-navigation mode="shift">
     <BottomNavItem to="/" title="Início" icon="mdi-home" />
 
     <BottomNavItem to="/timeline" title="Timeline" icon="mdi-timeline" />

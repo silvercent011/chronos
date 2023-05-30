@@ -8,7 +8,7 @@ const projectStore = useProjectStore();
 
 const registerStore = useRegisterStore();
 
-const [payload, resetPayload] = useEnhancedRef<any>({
+const [payload, resetPayload] = useEnhancedRef({
   title: "",
   minutes: "",
   jiraUrl: "",
