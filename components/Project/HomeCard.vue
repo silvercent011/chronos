@@ -20,6 +20,10 @@ async function fetchValues() {
   }
 }
 
+function exportValues() {
+  projectStore.exportMonthRegisters(props.project.id);
+}
+
 const { totalHoursOnMonth, totalMinutesOnMonth, uncompleteHoursMinutes } =
   useMonthTime({ values });
 
@@ -47,6 +51,11 @@ onMounted(async () => {
       <p class="text-h4 font-weight-black">
         <span> {{ totalHoursOnMonth }}</span
         >/{{ project.monthHours }}h
+        <v-btn
+          @click="exportValues"
+          icon="mdi-download"
+          variant="outlined"
+        ></v-btn>
       </p>
     </div>
   </v-card>
