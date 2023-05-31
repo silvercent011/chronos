@@ -76,10 +76,39 @@ export const useProjectStore = defineStore("project", () => {
     return _registers;
   }
 
+  async function exportMonthRegisters(id: string) {
+    const headers = useRequestHeaders(["cookie"]) as HeadersInit;
+
+    const date = new Date();
+
+    const { data } = await useFetch(`/api/projects/${id}/report`, {
+      headers,
+      query: {
+        ano: date.getFullYear(),
+        mes: String(date.getMonth() + 1).padStart(2, "0"),
+      },
+    });
+
+    // @ts-ignore
+    const url = window.URL.createObjectURL(new Blob([data.value]));
+    const link = document.createElement("a");
+    link.setAttribute(
+      "download",
+      `report-${String(date.getMonth() + 1).padStart(
+        2,
+        "0"
+      )}-${date.getFullYear()}.csv`
+    );
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+  }
+
   return {
     projects,
     createProject,
     getMonthRegisters,
     getTodayRegisters,
+    exportMonthRegisters,
   };
 });

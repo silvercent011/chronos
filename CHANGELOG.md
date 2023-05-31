@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.3.0
+
+[compare changes](https://github.com/silvercent011/minhas-horas/compare/v1.2.0...v1.3.0)
+
+
+### 🚀 Enhancements
+
+  - **export-csv:** Adiciona exportação de arquivos para csv, resolves #20 ([#20](https://github.com/silvercent011/minhas-horas/issues/20))
+
+### ❤️  Contributors
+
+- Sidney Alex
+
 ## v1.2.0
 
 [compare changes](https://github.com/silvercent011/minhas-horas/compare/v1.1.0...v1.2.0)
